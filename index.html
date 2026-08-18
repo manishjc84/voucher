@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>$750 Shopping Survey</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -46,7 +49,6 @@
       text-align: center;
     }
 
-    /* --- Reward Selection Section --- */
     .reward-section-title {
       font-size: 14px;
       font-weight: 600;
@@ -82,7 +84,7 @@
     .reward-item.selected {
       border-color: #2875d6;
       background: #eef5ff;
-      box-shadow: 0 4px 10px rgba(40, 117, 214, 0.15);
+      box-shadow: 0 4px 10px rgba(40,117,214,.15);
     }
 
     .reward-item img {
@@ -99,7 +101,6 @@
       color: #555;
     }
 
-    /* --- Progress Bar --- */
     .progress {
       display: flex;
       justify-content: center;
@@ -125,7 +126,6 @@
       margin-left: 8px;
     }
 
-    /* --- Questions & Options --- */
     #questionArea {
       transition: transform .35s ease, opacity .35s ease;
     }
@@ -172,7 +172,6 @@
       font-size: 20px;
     }
 
-    /* --- Submit Button & Messaging --- */
     .submit {
       width: 100%;
       border: 0;
@@ -208,12 +207,21 @@
     }
 
     @media (max-width: 450px) {
-      body { padding: 10px; }
-      .header h1 { font-size: 21px; }
-      .reward-item img { height: 45px; }
+      body {
+        padding: 10px;
+      }
+
+      .header h1 {
+        font-size: 21px;
+      }
+
+      .reward-item img {
+        height: 45px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div class="survey-card">
@@ -225,46 +233,75 @@
     <div class="content">
 
       <!-- Gift Card Selection -->
-      <div class="reward-section-title">Select your preferred $750 Gift Card:</div>
-      <div class="reward-selection">
-        <div class="reward-item selected" onclick="selectCard(this, 'Amazon')">
-          <img src="https://st3.depositphotos.com/1008960/33610/i/450/depositphotos_336109386-stock-photo-amazon-gift-card-black-background.jpg" alt="Amazon Gift Card">
-          <span>Amazon</span>
-        </div>
-        <div class="reward-item" onclick="selectCard(this, 'Target')">
-          <img src="https://www.nicepng.com/png/full/11-112487_gift-card-target-target-gift-card-png.png" alt="Target Gift Card">
-          <span>Target</span>
-        </div>
-        <div class="reward-item" onclick="selectCard(this, 'SHEIN')">
-          <img src="https://www.mygiftcardsupply.com/wp-content/uploads/2023/03/Shein-Gift-Cards.png.webp" alt="SHEIN Gift Card">
-          <span>SHEIN</span>
-        </div>
+      <div class="reward-section-title">
+        Select your preferred $750 Gift Card:
       </div>
 
-      <!-- Progress Tracker -->
+      <div class="reward-selection">
+
+        <div class="reward-item selected"
+             onclick="selectCard(this, 'Amazon')">
+          <img
+            src="https://st3.depositphotos.com/1008960/33610/i/450/depositphotos_336109386-stock-photo-amazon-gift-card-black-background.jpg"
+            alt="Amazon Gift Card">
+          <span>Amazon</span>
+        </div>
+
+        <div class="reward-item"
+             onclick="selectCard(this, 'Target')">
+          <img
+            src="https://www.nicepng.com/png/full/11-112487_gift-card-target-target-gift-card-png.png"
+            alt="Target Gift Card">
+          <span>Target</span>
+        </div>
+
+        <div class="reward-item"
+             onclick="selectCard(this, 'SHEIN')">
+          <img
+            src="https://www.mygiftcardsupply.com/wp-content/uploads/2023/03/Shein-Gift-Cards.png.webp"
+            alt="SHEIN Gift Card">
+          <span>SHEIN</span>
+        </div>
+
+      </div>
+
+      <!-- Progress -->
       <div class="progress">
         <span class="active"></span>
         <span></span>
         <span></span>
-        <div class="question-count">Question 1 of 3</div>
+        <div class="question-count">
+          Question 1 of 3
+        </div>
       </div>
 
-      <!-- Dynamic Question Container -->
+      <!-- Questions -->
       <div id="questionArea">
-        <p class="question">Are you shopping online?</p>
 
-        <div class="option" onclick="selectOption(this, 'Yes')">
+        <p class="question">
+          Are you shopping online?
+        </p>
+
+        <div class="option"
+             onclick="selectOption(this, 'Yes')">
           <span class="icon">👍</span>
           Yes
         </div>
 
-        <div class="option" onclick="selectOption(this, 'No')">
+        <div class="option"
+             onclick="selectOption(this, 'No')">
           <span class="icon">👎</span>
           No
         </div>
+
       </div>
 
-      <button class="submit" id="submitBtn" disabled onclick="nextQuestion()">
+      <!-- Main Button -->
+      <button
+        class="submit"
+        id="submitBtn"
+        disabled
+        onclick="nextQuestion()">
         Next
       </button>
 
@@ -273,85 +310,235 @@
     </div>
   </div>
 
+
   <script>
+
     let currentQuestion = 1;
     let selectedAnswer = "";
     let selectedCard = "Amazon";
+
     const answers = {};
 
+
+    /* Gift Card Selection */
     function selectCard(element, cardName) {
-      document.querySelectorAll(".reward-item").forEach(item => {
-        item.classList.remove("selected");
-      });
+
+      document.querySelectorAll(".reward-item")
+        .forEach(item => {
+          item.classList.remove("selected");
+        });
+
       element.classList.add("selected");
+
       selectedCard = cardName;
     }
 
+
+    /* Answer Selection */
     function selectOption(element, answer) {
-      document.querySelectorAll(".option").forEach(option => {
-        option.classList.remove("selected");
-      });
+
+      document.querySelectorAll(".option")
+        .forEach(option => {
+          option.classList.remove("selected");
+        });
 
       element.classList.add("selected");
+
       selectedAnswer = answer;
+
       document.getElementById("submitBtn").disabled = false;
     }
 
+
+    /* Next Button */
     function nextQuestion() {
+
       if (!selectedAnswer) return;
+
       answers[currentQuestion] = selectedAnswer;
 
       if (currentQuestion < 3) {
+
         currentQuestion++;
+
         selectedAnswer = "";
 
-        const questionArea = document.getElementById("questionArea");
+        const questionArea =
+          document.getElementById("questionArea");
+
         questionArea.style.transform = "translateX(40px)";
         questionArea.style.opacity = "0";
 
+
         setTimeout(() => {
+
+          /* Question 2 */
           if (currentQuestion === 2) {
+
             questionArea.innerHTML = `
-              <p class="question">Are you 18 years or older?</p>
-              <div class="option" onclick="selectOption(this, 'Yes')"><span class="icon">👍</span>Yes</div>
-              <div class="option" onclick="selectOption(this, 'No')"><span class="icon">👎</span>No</div>`;
-          } else {
-            questionArea.innerHTML = `
-              <p class="question">Are you male or female?</p>
-              <div class="option" onclick="selectOption(this, 'Male')"><span class="icon">👨</span>Male</div>
-              <div class="option" onclick="selectOption(this, 'Female')"><span class="icon">👩</span>Female</div>`;
+              <p class="question">
+                Are you 18 years or older?
+              </p>
+
+              <div class="option"
+                   onclick="selectOption(this, 'Yes')">
+                <span class="icon">👍</span>
+                Yes
+              </div>
+
+              <div class="option"
+                   onclick="selectOption(this, 'No')">
+                <span class="icon">👎</span>
+                No
+              </div>
+            `;
+
           }
 
-          document.querySelectorAll(".progress span").forEach((span, i) => {
-            span.classList.toggle("active", i < currentQuestion);
-          });
-          document.querySelector(".question-count").textContent = `Question ${currentQuestion} of 3`;
-          document.getElementById("submitBtn").textContent = currentQuestion === 3 ? "Submit" : "Next";
-          document.getElementById("submitBtn").disabled = true;
+          /* Question 3 */
+          else {
+
+            questionArea.innerHTML = `
+              <p class="question">
+                Are you male or female?
+              </p>
+
+              <div class="option"
+                   onclick="selectOption(this, 'Male')">
+                <span class="icon">👨</span>
+                Male
+              </div>
+
+              <div class="option"
+                   onclick="selectOption(this, 'Female')">
+                <span class="icon">👩</span>
+                Female
+              </div>
+            `;
+
+          }
+
+
+          /* Progress Update */
+          document
+            .querySelectorAll(".progress span")
+            .forEach((span, i) => {
+              span.classList.toggle(
+                "active",
+                i < currentQuestion
+              );
+            });
+
+
+          document.querySelector(".question-count")
+            .textContent =
+            `Question ${currentQuestion} of 3`;
+
+
+          /*
+            IMPORTANT:
+            Question 3 par bhi Next hi rahega.
+            Next click karne ke baad final page open hoga.
+          */
+          document.getElementById("submitBtn")
+            .textContent = "Next";
+
+          document.getElementById("submitBtn")
+            .disabled = true;
+
 
           questionArea.style.transform = "translateX(0)";
           questionArea.style.opacity = "1";
+
         }, 180);
-      } else {
-        showSubmitPage();
+
+      }
+
+      else {
+
+        showFinalPage();
+
       }
     }
 
-    function showSubmitPage() {
+
+    /* Final Page */
+    function showFinalPage() {
+
       answers["selectedCard"] = selectedCard;
 
-      document.getElementById("questionArea").innerHTML = `
-        <p class="question">Survey Complete!</p>
-        <p style="color:#666; font-size:14px; margin-bottom:10px;">Your answers have been recorded.</p>`;
-      
-      document.getElementById("submitBtn").style.display = "none";
-      
-      const message = document.getElementById("message");
-      message.textContent = `Congratulations! Your $750 ${selectedCard} reward is ready to be claimed.`;
-      message.style.display = "block";
-      
-      document.querySelectorAll(".progress span").forEach(span => span.classList.add("active"));
+      const questionArea =
+        document.getElementById("questionArea");
+
+
+      /*
+        Survey Complete text removed.
+        Instead final page has a simple confirmation message.
+      */
+      questionArea.innerHTML = `
+        <p class="question">
+          Please review your selection
+        </p>
+
+        <p style="
+          color:#666;
+          font-size:14px;
+          margin-bottom:10px;
+        ">
+          Your responses are ready to be submitted.
+        </p>
+      `;
+
+
+      /*
+        FINAL PAGE:
+        Button changes from Next -> Submit
+      */
+      const submitBtn =
+        document.getElementById("submitBtn");
+
+      submitBtn.textContent = "Submit";
+
+      submitBtn.disabled = false;
+
+      submitBtn.style.display = "block";
+
+
+      /* Progress complete */
+      document
+        .querySelectorAll(".progress span")
+        .forEach(span => {
+          span.classList.add("active");
+        });
+
+      document.querySelector(".question-count")
+        .textContent = "Ready to submit";
+
+
+      /* Submit action */
+      submitBtn.onclick = submitSurvey;
     }
+
+
+    /* Final Submit */
+    function submitSurvey() {
+
+      const submitBtn =
+        document.getElementById("submitBtn");
+
+      submitBtn.disabled = true;
+
+      submitBtn.textContent = "Submitted";
+
+      const message =
+        document.getElementById("message");
+
+      message.textContent =
+        "Your survey has been submitted successfully.";
+
+      message.style.display = "block";
+    }
+
   </script>
 
 </body>
