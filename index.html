@@ -28,56 +28,78 @@
     }
 
     .header {
-      height: 155px;
       background: linear-gradient(135deg, #182b5a, #294b9b);
       color: #fff;
       text-align: center;
-      padding: 22px 15px;
+      padding: 24px 15px 20px;
     }
 
     .header h1 {
       margin: 0;
-      font-size: 27px;
-      line-height: 1.15;
+      font-size: 24px;
+      line-height: 1.25;
       font-weight: 700;
     }
 
-    .reward {
-      width: 195px;
-      margin: -45px auto 0;
-      position: relative;
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,.18);
-    }
-
-    .reward-top {
-      background: linear-gradient(#2680e8, #0c5fbe);
-      color: white;
-      font-size: 38px;
-      padding: 12px 0 5px;
-    }
-
-    .shopping {
-      color: #2255a0;
-      font-size: 22px;
-      font-weight: bold;
-      padding: 7px 0 2px;
-      letter-spacing: .5px;
-    }
-
-    .small {
-      color: #aaa;
-      font-size: 7px;
-      padding-bottom: 8px;
-    }
-
     .content {
-      padding: 32px 22px 28px;
+      padding: 24px 22px 28px;
       text-align: center;
     }
 
+    /* --- Reward Selection Section --- */
+    .reward-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 12px;
+    }
+
+    .reward-selection {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .reward-item {
+      flex: 1;
+      border: 2px solid #e1e1e1;
+      border-radius: 10px;
+      padding: 8px 5px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .reward-item:hover {
+      border-color: #2d73d5;
+      background: #f7f9ff;
+    }
+
+    .reward-item.selected {
+      border-color: #2875d6;
+      background: #eef5ff;
+      box-shadow: 0 4px 10px rgba(40, 117, 214, 0.15);
+    }
+
+    .reward-item img {
+      width: 100%;
+      height: 55px;
+      object-fit: contain;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+
+    .reward-item span {
+      font-size: 12px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    /* --- Progress Bar --- */
     .progress {
       display: flex;
       justify-content: center;
@@ -103,6 +125,11 @@
       margin-left: 8px;
     }
 
+    /* --- Questions & Options --- */
+    #questionArea {
+      transition: transform .35s ease, opacity .35s ease;
+    }
+
     .question {
       font-size: 19px;
       color: #333;
@@ -112,8 +139,9 @@
 
     .option {
       width: 100%;
-      min-height: 62px;
+      min-height: 58px;
       border: 1px solid #e1e1e1;
+      border-radius: 8px;
       background: #fff;
       display: flex;
       align-items: center;
@@ -122,9 +150,9 @@
       position: relative;
       cursor: pointer;
       font-size: 17px;
-      color: #666;
+      color: #555;
       transition: .2s;
-      margin-bottom: 9px;
+      margin-bottom: 10px;
     }
 
     .option:hover {
@@ -141,15 +169,16 @@
     .icon {
       position: absolute;
       left: 16px;
-      font-size: 22px;
+      font-size: 20px;
     }
 
+    /* --- Submit Button & Messaging --- */
     .submit {
       width: 100%;
       border: 0;
-      border-radius: 7px;
+      border-radius: 8px;
       padding: 14px;
-      margin-top: 12px;
+      margin-top: 10px;
       background: #2875d6;
       color: white;
       font-size: 17px;
@@ -169,18 +198,19 @@
 
     .message {
       display: none;
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 14px;
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 15px;
       background: #eaf7ed;
       color: #21723a;
+      font-weight: bold;
     }
 
     @media (max-width: 450px) {
       body { padding: 10px; }
-      .header h1 { font-size: 23px; }
-      .reward { width: 175px; }
+      .header h1 { font-size: 21px; }
+      .reward-item img { height: 45px; }
     }
   </style>
 </head>
@@ -189,17 +219,29 @@
   <div class="survey-card">
 
     <div class="header">
-      <h1>Get $750 Toward Online<br>Shopping</h1>
-    </div>
-
-    <div class="reward">
-      <div class="reward-top">$750</div>
-      <div class="shopping">SHOPPING</div>
-      <div class="small">Independent promotional reward</div>
+      <h1>Get $750 Toward Online Shopping</h1>
     </div>
 
     <div class="content">
 
+      <!-- Gift Card Selection -->
+      <div class="reward-section-title">Select your preferred $750 Gift Card:</div>
+      <div class="reward-selection">
+        <div class="reward-item selected" onclick="selectCard(this, 'Amazon')">
+          <img src="https://st3.depositphotos.com/1008960/33610/i/450/depositphotos_336109386-stock-photo-amazon-gift-card-black-background.jpg" alt="Amazon Gift Card">
+          <span>Amazon</span>
+        </div>
+        <div class="reward-item" onclick="selectCard(this, 'Target')">
+          <img src="https://www.nicepng.com/png/full/11-112487_gift-card-target-target-gift-card-png.png" alt="Target Gift Card">
+          <span>Target</span>
+        </div>
+        <div class="reward-item" onclick="selectCard(this, 'SHEIN')">
+          <img src="https://www.mygiftcardsupply.com/wp-content/uploads/2023/03/Shein-Gift-Cards.png.webp" alt="SHEIN Gift Card">
+          <span>SHEIN</span>
+        </div>
+      </div>
+
+      <!-- Progress Tracker -->
       <div class="progress">
         <span class="active"></span>
         <span></span>
@@ -207,6 +249,7 @@
         <div class="question-count">Question 1 of 3</div>
       </div>
 
+      <!-- Dynamic Question Container -->
       <div id="questionArea">
         <p class="question">Are you shopping online?</p>
 
@@ -227,12 +270,22 @@
 
       <div class="message" id="message"></div>
 
+    </div>
   </div>
 
   <script>
     let currentQuestion = 1;
     let selectedAnswer = "";
+    let selectedCard = "Amazon";
     const answers = {};
+
+    function selectCard(element, cardName) {
+      document.querySelectorAll(".reward-item").forEach(item => {
+        item.classList.remove("selected");
+      });
+      element.classList.add("selected");
+      selectedCard = cardName;
+    }
 
     function selectOption(element, answer) {
       document.querySelectorAll(".option").forEach(option => {
@@ -276,7 +329,6 @@
           document.getElementById("submitBtn").textContent = currentQuestion === 3 ? "Submit" : "Next";
           document.getElementById("submitBtn").disabled = true;
 
-          questionArea.style.transition = "transform .35s ease, opacity .35s ease";
           questionArea.style.transform = "translateX(0)";
           questionArea.style.opacity = "1";
         }, 180);
@@ -286,18 +338,21 @@
     }
 
     function showSubmitPage() {
+      answers["selectedCard"] = selectedCard;
+
       document.getElementById("questionArea").innerHTML = `
-        <p class="question">Submit</p>
-        <p style="color:#777; font-size:14px; margin-bottom:10px;">Your answers have been recorded.</p>`;
+        <p class="question">Survey Complete!</p>
+        <p style="color:#666; font-size:14px; margin-bottom:10px;">Your answers have been recorded.</p>`;
+      
       document.getElementById("submitBtn").style.display = "none";
+      
       const message = document.getElementById("message");
-      message.textContent = "Survey completed successfully!";
+      message.textContent = `Congratulations! Your $750 ${selectedCard} reward is ready to be claimed.`;
       message.style.display = "block";
+      
       document.querySelectorAll(".progress span").forEach(span => span.classList.add("active"));
     }
   </script>
 
 </body>
 </html>
-
-<!-- Photo added -->
