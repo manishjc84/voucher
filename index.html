@@ -20,9 +20,14 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
     width: 100%;
-    min-height: 0;
+    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -51,8 +56,11 @@ body {
     height: 100%;
     top: 0;
     left: 0;
+
     pointer-events: none;
     z-index: 1;
+
+    overflow: hidden;
 }
 
 
@@ -709,10 +717,6 @@ body {
 
     text-align: left;
 
-    /*
-       Text intentionally kept small
-       so the information box stays compact.
-    */
     font-size: 8px;
 
     line-height: 1.35;
@@ -859,7 +863,86 @@ body {
 @media (max-width: 600px) {
 
     body {
-        min-height: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    .bg-elements {
+        position: absolute;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* MOBILE COINS */
+
+    .coin-1 {
+        width: 55px;
+        height: 55px;
+        top: 12%;
+        left: 3%;
+    }
+
+    .coin-2 {
+        width: 45px;
+        height: 45px;
+        bottom: 15%;
+        left: 2%;
+    }
+
+    .coin-3 {
+        width: 65px;
+        height: 65px;
+        top: 8%;
+        right: 3%;
+    }
+
+    .coin-4 {
+        width: 50px;
+        height: 50px;
+        bottom: 12%;
+        right: 2%;
+    }
+
+    /* MOBILE CASH */
+
+    .cash {
+        width: 75px;
+        height: 38px;
+        font-size: 12px;
+    }
+
+    .cash-1 {
+        top: 22%;
+        left: -5%;
+    }
+
+    .cash-2 {
+        bottom: 25%;
+        left: 3%;
+    }
+
+    .cash-3 {
+        top: 27%;
+        right: -7%;
+    }
+
+    .cash-4 {
+        bottom: 8%;
+        right: 5%;
+    }
+
+    /* MOBILE STARS */
+
+    .star {
+        font-size: 18px;
+    }
+
+    .star-2 {
+        font-size: 22px;
+    }
+
+    .star-4 {
+        font-size: 20px;
     }
 
     .container {
@@ -929,7 +1012,7 @@ body {
         font-size: 18px;
     }
 
-    /* SMALL INFORMATION BOX */
+    /* INFORMATION BOX */
 
     .info-box {
         width: 96vw;
@@ -954,6 +1037,8 @@ body {
 
         padding: 3px 7px;
     }
+
+    /* FOOTER */
 
     .footer {
         padding: 18px 14px 16px;
@@ -1055,7 +1140,9 @@ body {
             amazon
         </div>
 
-        <div class="card-amount">$750.00</div>
+        <div class="card-amount">
+            $750.00
+        </div>
 
         <div class="card-smile"></div>
 
@@ -1069,7 +1156,9 @@ body {
 
     <div class="amount">
 
-        <span class="sparkle">✦</span>
+        <span class="sparkle">
+            ✦
+        </span>
 
         $750.00
 
@@ -1133,7 +1222,7 @@ body {
 
 
     <!-- =========================
-         COMPACT INFORMATION BOX
+         INFORMATION BOX
     ========================= -->
 
     <div class="info-box">
@@ -1150,16 +1239,22 @@ body {
             <a
                 href="https://www.everydaywinner.com/privacy_policy.php"
                 target="_blank"
-            >Privacy Policy</a>,
+            >
+                Privacy Policy
+            </a>,
             <a
                 href="https://www.everydaywinner.com/terms_of_service.php"
                 target="_blank"
-            >Terms of Service</a>
+            >
+                Terms of Service
+            </a>
             and
             <a
                 href="https://www.everydaywinner.com/Q1rules.php?override=34"
                 target="_blank"
-            >Official Rules</a>
+            >
+                Official Rules
+            </a>
             before participating in any real promotion.
         </p>
 
@@ -1170,7 +1265,7 @@ body {
         </p>
 
         <p>
-            <strong> disclaimer:</strong>
+            <strong>Disclaimer:</strong>
             This is a demonstration interface. No actual
             sweepstakes entry, prize claim, purchase,
             or promotional registration is created through
@@ -1186,7 +1281,9 @@ body {
             <a
                 href="https://www.everydaywinner.com/Q1rules.php?override=34"
                 target="_blank"
-            >Official Rules</a>.
+            >
+                Official Rules
+            </a>.
         </p>
 
         <p>
@@ -1194,13 +1291,17 @@ body {
             <a
                 href="https://www.everydaywinner.com/privacy_policy.php"
                 target="_blank"
-            >Privacy Policy</a>.
+            >
+                Privacy Policy
+            </a>.
             Website usage and applicable service conditions
             are described in the
             <a
                 href="https://www.everydaywinner.com/terms_of_service.php"
                 target="_blank"
-            >Terms of Service</a>.
+            >
+                Terms of Service
+            </a>.
         </p>
 
         <p>
@@ -1210,7 +1311,9 @@ body {
             <a
                 href="https://www.amazon.com/gp/help/customer/display.html?nodeId=3122091"
                 target="_blank"
-            >Amazon Gift Card Terms</a>.
+            >
+                Amazon Gift Card Terms
+            </a>.
         </p>
 
     </div>
@@ -1226,9 +1329,7 @@ body {
 
     <div class="footer-inner">
 
-        <div class="footer-demo">
-            
-        </div>
+        <div class="footer-demo"></div>
 
         <div class="footer-copyright">
 
